@@ -376,6 +376,18 @@ serieheader:hover aside {
     right: 0;
 }
 
+serieheader em.glyphicon{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: rgba(0,50,0, 0.8);
+    color: white;
+    font-size: 25px;
+    width: 45px;
+    height: 35px;
+    padding: 5px;
+}
+
 serieheader em.earmark {
     position: absolute;
     bottom: 0px;
@@ -1177,6 +1189,18 @@ calendar-event h2 {
 .season p.seasonposter {
     width: 150px;
     height: 220px;
+}
+
+.season em.glyphicon{
+    top: 0px;
+    right: 0px;
+    background-color: rgba(0,50,0, 0.8);
+    color: white;
+    font-size: 35px;
+    width: 45px;
+    height: 35px;
+    padding: 1px 0px 1px 5px;
+    float:right;
 }
 
 .alert {

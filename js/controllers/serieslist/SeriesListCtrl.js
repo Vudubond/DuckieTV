@@ -1,5 +1,5 @@
-DuckieTV.controller('seriesListCtrl', ["FavoritesService", "$rootScope", "$scope", "SettingsService", "TraktTVv2", "SidePanelState", "SeriesListState", "$state",
-    function(FavoritesService, $rootScope, $scope, SettingsService, TraktTVv2, SidePanelState, SeriesListState, $state) {
+DuckieTV.controller('seriesListCtrl', ["FavoritesService", "$rootScope", "$scope", "SettingsService", "TraktTVv2", "SidePanelState", "SeriesListState", "$state", "episodes",
+    function(FavoritesService, $rootScope, $scope, SettingsService, TraktTVv2, SidePanelState, SeriesListState, $state, episodes) {
 
         var serieslist = this;
 
@@ -8,6 +8,7 @@ DuckieTV.controller('seriesListCtrl', ["FavoritesService", "$rootScope", "$scope
         this.mode = SettingsService.get('series.displaymode'); // series display mode. Either 'banner' or 'poster', banner being wide mode, poster for portrait.
         this.isSmall = SettingsService.get('library.smallposters'); // library posters size , true for small, false for large
         this.hideEnded = false;
+        this.episodes = episodes;
 
         FavoritesService.flushAdding();
         this.query = ''; // local filter query, set from LocalSerieCtrl
@@ -160,6 +161,20 @@ DuckieTV.controller('seriesListCtrl', ["FavoritesService", "$rootScope", "$scope
          */
         this.isError = function(tvdb_id) {
             return FavoritesService.isError(tvdb_id);
+        };
+
+        /**
+         * Returns true if all episodes for the serie are watched
+         * excludes the special season, and non-aired episodes.
+         */
+        this.isAllWatched = function(serie) {
+            var allWatched = 1; // presume the series has been watched
+            this.episodes.map(function(episode) {
+                if (episode.ID_Serie == serie.ID_Serie && episode.seasonnumber > 0 && episode.hasAired()) {
+                    allWatched = (allWatched &&  episode.isWatched());
+                };
+            });
+            return allWatched;
         };
     }
 ]);

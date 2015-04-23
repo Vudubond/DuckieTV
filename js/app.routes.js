@@ -88,6 +88,12 @@ DuckieTV.config(["$stateProvider", "$urlRouterProvider",
                 },
                 FavoritesService: function(FavoritesService) {
                     return FavoritesService
+                },
+                episodes: function() {
+                    var filter = ['Episodes.seasonnumber > 0 AND Episodes.firstaired <= ' + new Date().getTime()];
+                    return CRUD.Find('Episode', 
+                        filter 
+                    )
                 }
             },
             views: {
@@ -265,6 +271,13 @@ DuckieTV.config(["$stateProvider", "$urlRouterProvider",
                 SidePanelState: expandSidePanel,
                 seasons: function($stateParams) {
                     return CRUD.Find('Season', {
+                        Serie: {
+                            ID_Serie: $stateParams.id
+                        }
+                    })
+                },
+                episodes: function($stateParams) {
+                    return CRUD.Find('Episode', {
                         Serie: {
                             ID_Serie: $stateParams.id
                         }

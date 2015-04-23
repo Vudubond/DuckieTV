@@ -13,7 +13,8 @@ DuckieTV.directive('serieheader', ["FavoritesService",
                 "noOverview": "=noOverview",
                 "noTitle": "=noTitle",
                 "mode": "@",
-                "added": "=added"
+                "added": "=added",
+                "isAllWatched": "="
             },
             templateUrl: "templates/serieHeader.html"
         };

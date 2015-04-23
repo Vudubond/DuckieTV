@@ -1,5 +1,6 @@
 <!-- serieHeader.html -->
 <div class="serieheader" ng-if="!noListButton && (mode == 'banner')" >
+  <em class="glyphicon glyphicon-eye-open" ng-if="isAllWatched == 1"></em>
   <a ng-if="serie.TVDB_ID"  ui-sref="serie({id: serie.ID_Serie})">
     <div ng-if="!mode || mode == 'banner'" class='banner' lazy-background="{{serie.banner}}"></div>
     <h3 ng-if="!noTitle">{{ serie.name }}</h3>
@@ -13,6 +14,7 @@
 </div>
 
 <div class="serieheader" ng-if="!noListButton && (!mode || mode == 'poster')" tooltip='{{serie.name}}'>
+  <em class="glyphicon glyphicon-eye-open" ng-if="isAllWatched == 1"></em>
   <a ng-if="serie.TVDB_ID"  ui-sref="serie({id: serie.ID_Serie})">
     <div ng-if="serie.poster != '' " class='poster' lazy-background="{{serie.poster}}"></div>
     <div ng-if="serie.poster == '' " class='poster' lazy-background="img/icon128.png" style='background-color: rgba(255,255,255,0.4)'></div>
@@ -28,6 +30,7 @@
 </div>
 
 <div class="serieheader" ng-if="noListButton" tooltip='{{serie.name}}'>
+  <em class="glyphicon glyphicon-eye-open"  ng-if="isAllWatched == 1"></em>
   <div ng-if="mode == 'poster' && serie.poster != '' " class='poster' lazy-background="{{serie.poster}}"></div>
   <div ng-if="mode == 'poster' && serie.poster == '' " class='poster' lazy-background="img/icon128.png" style='background-color: rgba(255,255,255,0.4)'></div>
   <div ng-if="!mode || mode == 'banner'" class='banner' lazy-background="{{serie.banner}}"></div>
